@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Jaibs - Vitrine virtual</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" lang="pt-br" content="Havaianas">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Havaianas">
+    <meta name="theme-color" content="#EBB61F">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- The following libraries and polyfills are recommended to maximize browser support -->
+    <!-- NOTE: you must adjust the paths as appropriate for your project -->
+
+    <!-- 🚨 REQUIRED: Web Components polyfill to support Edge and Firefox < 63 -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+
+    <!-- 💁 OPTIONAL: Intersection Observer polyfill for better performance in Safari and IE11 -->
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+
+    <!-- 💁 OPTIONAL: Resize Observer polyfill improves resize behavior in non-Chrome browsers -->
+    <script src="https://unpkg.com/resize-observer-polyfill@1.5.0/dist/ResizeObserver.js"></script>
+
+    <!-- 💁 OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
+    <!-- MALA MAIS LEVE src="https://cdn.glitch.com/26f00b29-51b7-4811-9ca7-3f1c898bb4b3%2Fmala_animada.glb?v=1619990634104"-->
+
+    <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
+
+
+
+</head>
+
+<body id="corpo">
+
+    <div id="card">
+        <model-viewer id="modelViewer" src="assets/havaianas.glb" alt="Havaianas - Vitrine virtual" shadow-intensity="2.8" camera-controls exposure="1" loading="lazy" auto-rotate shadow-softness="1.5" camera-orbit="-227.6deg 66.15deg 6.878m" min-camera-orbit="auto auto auto"
+            max-camera-orbit="auto auto 6.878m" camera-target="auto 0m 0m" environment-image="assets/aircraft_workshop_01_1k.hdr" ar>
+        </model-viewer>
+
+
+        <div id="logo">
+
+        </div>
+
+        <div id="comprar">
+            <img src="assets/comprar.png">
+        </div>
+
+        <div id="instrucoes">
+            <p>
+                Tap spin the havaianas. Use scroll or pinch to zoom.</p><a href="https://www.Jaibs.co" target="_blank">By Ali Zaib @Jaibs.</a>
+        </div>
+
+        <div id="controles_3d">
+            <div class="horizontal">
+                <p>
+                    Side
+                </p>
+            </div>
+            <div class="vertical">
+                <p>
+                    Forehead
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div id="footer">
+            <h1>Hawaiian Brazil Colors R $ 45,00</h1>
+
+            <p>Comfortable, amazing and pants perfectly in 90% of the feet</p>
+
+            <span>See in other colors</span>
+
+            <div class="controls" id="color-controls">
+                <div class="azul">
+                    <img src="assets/azul.png">
+                </div>
+                <div class="verde">
+                    <img src="assets/verde_amarelo.png">
+                </div>
+                <div class="amarelo">
+                    <img src="assets/amarelo_verde.png">
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <script>
+            var modelViewerColor = document.querySelector("model-viewer#modelViewer");
+
+            //modelViewer.addEventListener('model-visibility', function(evt) {
+            //const materialTira = modelViewerColor.model.materials[0];materialTira.pbrMetallicRoughness.setRoughnessFactor(0.6);
+            //modelViewerColor.orientation = "0deg 90deg 0m";
+            //modelViewerColor.scale = "0.7 0.7 0.7";
+            //modelViewerColor.cameraTarget = "auto 0m 0m";
+            //modelViewerColor.cameraOrbit = '0deg', '45deg', '7.095m';
+            //modelViewerColor.updateFraming();
+            //})
+
+            document.querySelector('#color-controls .azul').addEventListener('click', (event) => {
+
+                const materialTira = modelViewerColor.model.materials[0];
+                const materialPalmilia = modelViewerColor.model.materials[1];
+                const materialBorda = modelViewerColor.model.materials[2];
+                const materialLogo = modelViewerColor.model.materials[3];
+
+                materialTira.pbrMetallicRoughness.setBaseColorFactor([0.3, 0.3, 0.3, 1]);
+                materialTira.pbrMetallicRoughness.setRoughnessFactor(0.3);
+
+                materialPalmilia.pbrMetallicRoughness.setBaseColorFactor([0.3, 0.3, 0.3, 1]);
+                materialPalmilia.pbrMetallicRoughness.setRoughnessFactor(0.7);
+                materialLogo.pbrMetallicRoughness.setBaseColorFactor([0, 0.008, 0.04, 1]);
+
+                //console.log(materialPalmilia.pbrMetallicRoughness.baseColorTexture);
+                materialPalmilia.pbrMetallicRoughness.baseColorTexture.texture.source.setURI('assets/Base_palmilia_azul.png');
+                materialBorda.pbrMetallicRoughness.setBaseColorFactor([0.3, 0.3, 0.3, 1]);
+                materialBorda.pbrMetallicRoughness.setRoughnessFactor(0.3);
+                materialBorda.pbrMetallicRoughness.baseColorTexture.texture.source.setURI('assets/borda_chinelo_diffuse_azul.png');
+            });
+
+
+            document.querySelector('#color-controls .verde').addEventListener('click', (event) => {
+
+                const materialTira = modelViewerColor.model.materials[0];
+                const materialPalmilia = modelViewerColor.model.materials[1];
+                const materialBorda = modelViewerColor.model.materials[2];
+                const materialLogo = modelViewerColor.model.materials[3];
+
+                materialTira.pbrMetallicRoughness.setBaseColorFactor([0.5, 0.2, 0.007, 1]);
+                materialTira.pbrMetallicRoughness.setRoughnessFactor(0.5);
+
+                materialPalmilia.pbrMetallicRoughness.setBaseColorFactor([0.3, 0.3, 0.3, 1]);
+                materialPalmilia.pbrMetallicRoughness.setRoughnessFactor(0.9);
+                materialLogo.pbrMetallicRoughness.setBaseColorFactor([0, 0.008, 0.04, 1]);
+
+                //console.log(materialPalmilia.pbrMetallicRoughness.baseColorTexture);
+                materialPalmilia.pbrMetallicRoughness.baseColorTexture.texture.source.setURI('assets/Base_palmilia_verde.png');
+                materialBorda.pbrMetallicRoughness.setBaseColorFactor([0.8, 0.8, 0.8, 1]);
+                materialBorda.pbrMetallicRoughness.setRoughnessFactor(0.8);
+                materialBorda.pbrMetallicRoughness.baseColorTexture.texture.source.setURI('assets/borda_chinelo_diffuse.png');
+
+
+            });
+
+            document.querySelector('#color-controls .amarelo').addEventListener('click', (event) => {
+
+                const materialTira = modelViewerColor.model.materials[0];
+                const materialPalmilia = modelViewerColor.model.materials[1];
+                const materialBorda = modelViewerColor.model.materials[2];
+                const materialLogo = modelViewerColor.model.materials[3];
+
+                materialTira.pbrMetallicRoughness.setBaseColorFactor([0.0009, 0.02, 0.002, 1]);
+                materialTira.pbrMetallicRoughness.setRoughnessFactor(0.7);
+
+                materialPalmilia.pbrMetallicRoughness.setBaseColorFactor([0.8, 0.8, 0.8, 1]);
+                materialPalmilia.pbrMetallicRoughness.setRoughnessFactor(0.8);
+                materialLogo.pbrMetallicRoughness.setBaseColorFactor([1, 1, 1, 1]);
+
+                //console.log(materialPalmilia.pbrMetallicRoughness.baseColorTexture);
+                materialPalmilia.pbrMetallicRoughness.baseColorTexture.texture.source.setURI('assets/Base_palmilia.png');
+                materialBorda.pbrMetallicRoughness.setBaseColorFactor([0.8, 0.8, 0.8, 1]);
+                materialBorda.pbrMetallicRoughness.setRoughnessFactor(0.8);
+                materialBorda.pbrMetallicRoughness.baseColorTexture.texture.source.setURI('assets/borda_chinelo_diffuse.png');
+
+
+            });
+
+
+
+
+
+            document.querySelector('#controles_3d .vertical').addEventListener('click', (event) => {
+
+                modelViewerColor.orientation = "0deg 90deg 0m";
+                modelViewerColor.scale = "0.7 0.7 0.7";
+                modelViewerColor.cameraTarget = "auto 0m 0m";
+                modelViewerColor.cameraOrbit = '45deg', '45deg', '7.095m';
+
+            });
+
+            document.querySelector('#controles_3d .horizontal').addEventListener('click', (event) => {
+
+                modelViewerColor.orientation = "0deg 0deg 0m";
+                modelViewerColor.scale = "1 1 1";
+                modelViewerColor.cameraTarget = "auto 0m 0m";
+                modelViewerColor.cameraOrbit = '-227.6deg', '66.15deg', '.878m';
+
+
+            });
+
+
+            window.addEventListener("resize", () => {
+                if ((window.innerWidth <= 800)) {
+                    modelViewerColor.orientation = "0deg 90deg 0m";
+                    modelViewerColor.scale = "0.7 0.7 0.7";
+                    modelViewerColor.cameraTarget = "auto 0m 0m";
+                    modelViewerColor.cameraOrbit = '45deg', '45deg', '7.095m';
+                } else {
+                    modelViewerColor.orientation = "0deg 0deg 0m";
+                    modelViewerColor.scale = "1 1 1";
+                    modelViewerColor.cameraTarget = "auto 0m 0m";
+                    modelViewerColor.cameraOrbit = '-227.6deg', '66.15deg', '.878m';
+                }
+            });
+
+            if ((window.innerWidth <= 800)) {
+                modelViewerColor.orientation = "0deg 90deg 0m";
+                modelViewerColor.scale = "0.7 0.7 0.7";
+                modelViewerColor.cameraTarget = "auto 0m 0m";
+                modelViewerColor.cameraOrbit = '45deg', '45deg', '7.095m';
+            } else {
+                modelViewerColor.orientation = "0deg 0deg 0m";
+                modelViewerColor.scale = "1 1 1";
+                modelViewerColor.cameraTarget = "auto 0m 0m";
+                modelViewerColor.cameraOrbit = '-227.6deg', '66.15deg', '.878m';
+            }
+        </script>
+
+    </div>
+
+    <!-- 💁 Include both scripts below to support all browsers! -->
+
+    <!-- Loads <model-viewer> for modern browsers: -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+    </script>
+
+    <!-- Loads <model-viewer> for old browsers like IE11: -->
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
+    </script>
+</body>
+
+</html>
